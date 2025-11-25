@@ -7,11 +7,11 @@
                 {{ session('success') }}
             </div>
         @endif
-        @if (auth()->user()->role == 1)
+        @if (auth()->user()->role == 2)
             <livewire:dashboard-candidate />
         @endif
 
-        @if (auth()->user()->role == 2 || auth()->user()->role == 0)
+        @if (auth()->user()->role == 1 || auth()->user()->role == 0)
             <livewire:dashboard-company />
         @endif
     @endsection

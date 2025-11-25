@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function index () {
         $vacancies = Vacancy::all();
-        $recruitCount = User::where('role', 2)->count();
+        $recruitCount = User::where('role', 1)->count();
         return view('welcome', ['vacancies' => $vacancies, 'recruitCount' => $recruitCount]);
     }
 }

@@ -11,7 +11,7 @@ use Livewire\Volt\Component;
 new #[Layout('layouts.guest')] class extends Component {
     public string $name = '';
     public string $email = '';
-    public string $role = '2';
+    public string $role = '1';
     public string $website = '';
     public string $address = '';
     public string $password = '';
