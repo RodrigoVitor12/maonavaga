@@ -39,6 +39,10 @@
                 <span class=" text-white font-bold">{{ $recruitCount }}</span>
                 Recrutadores parceiros
             </p>
+            <p class="text-gray-300">
+                <span class=" text-white font-bold">{{ $candidateCount }}</span>
+                Candidatos Cadastrados
+            </p>
         </section>
 
         {{-- Passo a Passo  --}}
