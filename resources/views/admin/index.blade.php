@@ -18,6 +18,7 @@
                     <th class="p-3">ID</th>
                     <th class="p-3">Nome</th>
                     <th class="p-3">E-mail</th>
+                    <th class="p-3">Whatsapp</th>
                     <th class="p-3">Tipo</th>
                     <th class="p-3">Currículo</th>
                 </tr>
@@ -29,10 +30,15 @@
                         <td class="p-3">{{ $user->name }}</td>
                         <td class="p-3">{{ $user->email }}</td>
                         <td class="p-3">
+                            <a href="https://wa.me/{{ preg_replace('/\D/', '', $user->phone) }}" target="_blank" class="text-blue-600 underline">
+                                {{ $user->phone }}
+                            </a>
+                        </td>
+                        <td class="p-3">
                             @if ($user->role == 2)
-                                <span class="text-red-600 font-semibold">Empresa</span>
+                                <span class=" text-blue-600 font-semibold">Candidato</span>
                             @elseif ($user->role == 1)
-                                <span class="text-blue-600 font-semibold">Candidato</span>
+                                <span class="text-red-600 font-semibold">Empresa</span>
                             @else
                                 <span class="text-green-600 font-semibold">Admin</span>
                             @endif
