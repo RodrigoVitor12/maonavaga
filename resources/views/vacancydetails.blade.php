@@ -5,7 +5,7 @@
         <div class="bg-white flex flex-col rounded-xl p-8">
             <h1 class="text-3xl font-bold text-[#155DFC] mb-2">{{ $vacancy->title }}</h1>
 
-            <h3 class="text-xl text-gray-600 mb-4">{{ $vacancy->user->name ?? 'Empresa não informada' }}</h3>
+            <h3 class="text-xl text-gray-600 mb-4">{{ $vacancy->name ?? 'Empresa não informada' }}</h3>
             <div class="flex flex-wrap gap-3 mb-6 text-gray-700">
                 <span
                     class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">{{ $vacancy->type }}</span>
