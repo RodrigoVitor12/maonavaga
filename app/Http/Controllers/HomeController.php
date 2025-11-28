@@ -8,7 +8,7 @@ use App\Models\Vacancy;
 class HomeController extends Controller
 {
     public function index () {
-        $vacancies = Vacancy::all();
+        $vacancies = Vacancy::latest()->get();
         $recruitCount = User::where('role', 1)->count();
         $candidateCount = User::where('role', '2')->count();
         return view('welcome', ['vacancies' => $vacancies, 'recruitCount' => $recruitCount, 'candidateCount' => $candidateCount]);
