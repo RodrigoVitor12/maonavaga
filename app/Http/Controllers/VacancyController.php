@@ -12,7 +12,7 @@ class VacancyController extends Controller
     public function create()
     {
         $user = User::where('id', Auth::id())->select('role')->first();
-        if ($user->role == 2 || $user->role == 0)
+        if ($user->role == 1 || $user->role == 0)
             return view('company.create-job');
         return redirect()->back();
     }
@@ -35,7 +35,7 @@ class VacancyController extends Controller
     public function store(Request $request)
     {
         $user = $request->user();
-        if ($user->role == 2 || $user->role == 0) {
+        if ($user->role == 1 || $user->role == 0) {
             try {
                 $user->vacancies()->create([
                     'name'         => $request['name'],
