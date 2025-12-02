@@ -43,11 +43,15 @@
                                 <span class="text-green-600 font-semibold">Admin</span>
                             @endif
                         </td>
-                        <td class="p-3">
+                        <td class="p-3"> 
+                            @if ($user->resume)
                                 <a href="{{ route('show.resume', ['id' => $user->id]) }}"
-                                   class="inline-block px-3 py-1 bg-[#1447E8] text-white text-sm rounded-md hover:bg-blue-900 transition">
+                                class="inline-block px-3 py-1 bg-[#1447E8] text-white text-sm rounded-md hover:bg-blue-900 transition">
                                     Ver Currículo
                                 </a>
+                            @else
+                                <p>Sem Curriculo</p>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
