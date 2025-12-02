@@ -51,7 +51,7 @@
                             Candidatar
                         </button>
                     @else
-                        @if (auth()->user()->role != 2 && $vacancy->user->role != 0)
+                        @if (auth()->user()->role != 1 && $vacancy->user->role != 0)
                             <button type="submit"
                                 class="bg-[#155DFC] block text-center py-2 rounded-md text-white mt-3 hover:bg-blue-950 hover:text-blue-500 w-full">
                                 Candidatar
