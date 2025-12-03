@@ -33,6 +33,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index',])->name('dashboard');
     Route::get('/profile/{id}', [ProfileController::class, 'index'])->name('profile');
 
+    Route::get('/ver-curriculos', [CandidateController::class, 'allCandidates'])->name('company.see_resumes');
+
     // Admin
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.index');
 });

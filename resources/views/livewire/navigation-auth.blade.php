@@ -32,6 +32,11 @@ new class extends Component {
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @if (auth()->user()->role == 1)
+                        <x-nav-link :href="route('company.see_resumes')" :active="request()->routeIs('company.see_resumes')" wire:navigate>
+                            {{ __('Ver Curriculos') }}
+                        </x-nav-link>
+                    @endif
                     @if (auth()->user()->role == 0)
                         <x-nav-link :href="route('admin.index')" :active="request()->routeIs('dashboard')" wire:navigate>
                             {{ __('Admin') }}
@@ -102,6 +107,11 @@ new class extends Component {
             <x-responsive-nav-link :href="route('vacancies.show')" :active="request()->routeIs('vacancies.show')" wire:navigate>
                 {{ __('Vagas') }}
             </x-responsive-nav-link>
+            @if (auth()->user()->role == 1)
+                <x-responsive-nav-link :href="route('company.see_resumes')" :active="request()->routeIs('company.see_resumes')" wire:navigate>
+                    {{ __('Ver Curriculos') }}
+                </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->
