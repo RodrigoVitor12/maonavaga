@@ -27,7 +27,7 @@ class VacancyController extends Controller
 
     public function show()
     {
-        $vacancies = Vacancy::latest()->paginate(21);
+        $vacancies = Vacancy::latest()->where('status', 'Ativo')->paginate(21);
 
         return view('vacancies', ['vacancies' => $vacancies]);
     }
@@ -49,6 +49,7 @@ class VacancyController extends Controller
                     'type'          => $request['type'],
                     'address'       => $request['address'],
                     'email_contact' => $request['email_contact'],
+                    'status' => 'Ativo'
                 ]);
                 return redirect()
                     ->route('company.create-job') // ou outra rota que você queira

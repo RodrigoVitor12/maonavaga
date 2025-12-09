@@ -89,7 +89,7 @@
                             <td class="p-3">
                                 <span class="px-3 py-1 rounded-full text-sm 
                                     bg-gray-300 text-gray-800">
-                                    Pendente
+                                    {{$myCandidacy->status == "Ativo" ? 'Candidatura Enviado' : 'Vaga Encerrada'}}
                                 </span>
                             </td>
 
@@ -100,7 +100,7 @@
                             <td class="p-3">
                                 <button wire:click="destroy({{$myCandidacy->id}})"
                                         class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded shadow">
-                                    Cancelar
+                                    {{$myCandidacy->status == "Ativo" ? 'Cancelar Candidatura' : 'Excluir'}}
                                 </button>
                             </td>
 
