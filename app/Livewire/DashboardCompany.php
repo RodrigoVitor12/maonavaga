@@ -22,8 +22,24 @@ class DashboardCompany extends Component
         return view('livewire.dashboard-company');
     }
 
-    public function destroy($id) {
-        Vacancy::find($id)->delete();
+    public function stop($id) {
+        $vacancy = Vacancy::find($id);
+
+        $vacancy->update([
+            'status' => 'Encerrado'
+        ]);
+        
+        $this->vacancies = Auth::user()->vacanciesWithCandidacyCount();
+        $this->candidates = Auth::user()->allApplies();
+    }
+
+    public function reopen ($id) {
+        $vacancy = Vacancy::find($id);
+
+        $vacancy->update([
+            'status' => 'Ativo'
+        ]);
+
         $this->vacancies = Auth::user()->vacanciesWithCandidacyCount();
         $this->candidates = Auth::user()->allApplies();
     }

@@ -7,7 +7,7 @@ use App\Models\User;
 
 class Vacancy extends Model
 {
-    protected $fillable = ['name', 'title', 'description','type', 'salary', 'address', 'email_contact', 'requirements', 'benefits'];
+    protected $fillable = ['name', 'title', 'description','type', 'salary', 'address', 'email_contact', 'requirements', 'benefits', 'status'];
 
     public function user() {
         return $this->belongsTo(User::class);

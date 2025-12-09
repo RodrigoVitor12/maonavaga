@@ -59,11 +59,19 @@
                             <td class="p-3">{{ $vacancy->title }}</td>
                             <td class="p-3">{{$vacancy->applies_count}}</td>
                             <td class="p-3">
-                                <span class="px-2 py-1 rounded-full bg-green-200 text-green-800">Aberta</span>
+                                <span 
+                                    class="px-2 py-1 rounded-full 
+                                        {{ $vacancy->status == 'Ativo' ? 'text-green-800' : 'text-red-500' }} "
+                                    >
+                                    {{$vacancy->status}}
+                                </span>
                             </td>
                             <td class="p-3">{{ $vacancy->created_at->format('d/m/Y') }}</td>
                             <td class="p-3 flex gap-2">
-                                <button id="finesh-vacancy" wire:click="destroy({{$vacancy->id}})" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
+                                <button id="reopen-vacancy" wire:click="reopen({{$vacancy->id}})" class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600">
+                                    Reabrir
+                                </button>
+                                <button id="finesh-vacancy" wire:click="stop({{$vacancy->id}})" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
                                     Encerrar
                                 </button>
                             </td>
