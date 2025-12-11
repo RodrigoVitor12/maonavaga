@@ -8,36 +8,16 @@
                     <thead class="bg-[#1447E8]">
                         <tr>
                             <th class="p-3 text-left text-white">Nome do Candidato</th>
+                            <th class="p-3 text-left text-white">Status</th>
                             <th class="p-3 text-left text-white">Ver curriculo</th>
                             <th class="p-3 text-left text-white">Whatsapp</th>
                             <th class="p-3 text-left text-white">E-mail</th>
                             <th class="p-3 text-left text-white">Vaga Candidatada</th>
+                            <th class="p-3 text-left text-white"></th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-gray-200">
-                        @foreach ($candidates as $candidate)
-                            <tr class="hover:bg-gray-100">
-                                <td class="p-3 whitespace-nowrap">{{ $candidate->user->name }}</td>
-                                <td class="p-3 whitespace-nowrap">
-                                    <a class="text-blue-400 hover:text-blue-600 hover:underline"
-                                        href="{{ route('show.resume', $candidate->user->id) }}">
-                                        Ver curriculo
-                                    </a>
-                                </td>
-                                <td class="p-3 whitespace-nowrap">
-                                    @php
-                                        $phone = preg_replace('/\D/', '', $candidate->user->phone); // remove tudo que não é número
-                                    @endphp
-                                    <a href="https://wa.me/{{ $phone }}" target="_blank"
-                                        class="text-blue-900 underline">
-                                        {{ $candidate->user->phone }}
-                                    </a>
-                                </td>
-                                <td class="p-3 whitespace-nowrap">{{ $candidate->user->email }}</td>
-                                <td class="p-3 whitespace-nowrap">{{ $candidate->vacancy->title }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
+                    
+                    <livewire:company-table-candidates />
                 </table>
             </div>
         </div>

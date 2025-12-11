@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Apply extends Model
 {
-    protected $fillable = ['user_id', 'vacancy_id', 'curriculum'];
+    protected $fillable = ['user_id', 'vacancy_id', 'status'];
 
     public function vacancy()
     {

@@ -13,27 +13,23 @@
 
     <!-- BOTÕES DE ATALHO -->
     <div class="flex flex-col md:flex-row gap-4">
-        <a id="see-vacancies" 
-           href="{{route('vacancies.show')}}"
-           class="bg-[#0D6EFD] hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-md shadow text-center">
+        <a id="see-vacancies" href="{{ route('vacancies.show') }}"
+            class="bg-[#0D6EFD] hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-md shadow text-center">
             Ver vagas
         </a>
 
-        <a id="create-cv" 
-           href="{{ route('create.resume') }}"
-           class="bg-[#0D6EFD] hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-md shadow text-center">
+        <a id="create-cv" href="{{ route('create.resume') }}"
+            class="bg-[#0D6EFD] hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-md shadow text-center">
             Criar Currículo
         </a>
 
-        <a id="edit-cv" 
-           href="{{ route('page.update.resume') }}"
-           class="bg-[#0D6EFD] hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-md shadow text-center">
+        <a id="edit-cv" href="{{ route('page.update.resume') }}"
+            class="bg-[#0D6EFD] hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-md shadow text-center">
             Editar Currículo
         </a>
 
-        <a id="see-cv" 
-           href="{{ route('show.resume', auth()->user()->id) }}"
-           class="bg-[#0D6EFD] hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-md shadow text-center">
+        <a id="see-cv" href="{{ route('show.resume', auth()->user()->id) }}"
+            class="bg-[#0D6EFD] hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-md shadow text-center">
             Ver Currículo
         </a>
     </div>
@@ -58,7 +54,7 @@
                 <div class="bg-[#0D6EFD] h-2 rounded-full" style="width:85%"></div>
             </div>
         </div> --}}
-        
+
 
     </div>
 
@@ -80,6 +76,10 @@
 
                 <tbody>
                     @foreach ($myCandidacies as $myCandidacy)
+                        @php
+                            $apply = $myCandidacy->applies->first();
+                        @endphp
+
                         <tr class="border-b hover:bg-[#F8FBFF] transition">
 
                             <td class="p-3">{{ $myCandidacy->title }}</td>
@@ -87,9 +87,15 @@
                             <td class="p-3">{{ $myCandidacy->name }}</td>
 
                             <td class="p-3">
-                                <span class="px-3 py-1 rounded-full text-sm 
-                                    bg-gray-300 text-gray-800">
-                                    {{$myCandidacy->status == "Ativo" ? 'Candidatura Enviado' : 'Vaga Encerrada'}}
+                                <span
+                                    class="px-3 py-1 rounded-full text-sm {{ $apply?->status == 'Recebido'
+                                        ? 'bg-gray-400 text-white'
+                                        : ($apply?->status == 'Em analise'
+                                            ? 'bg-blue-500 text-white'
+                                            : ($apply?->status == 'Aprovado'
+                                                ? 'bg-green-500 text-white'
+                                                : 'bg-red-500 text-white')) }}">
+                                    {{ $myCandidacy->status == 'Ativo' ? $apply?->status : 'Vaga Encerrada' }}
                                 </span>
                             </td>
 
@@ -98,14 +104,15 @@
                             </td>
 
                             <td class="p-3">
-                                <button wire:click="destroy({{$myCandidacy->id}})"
-                                        class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded shadow">
-                                    {{$myCandidacy->status == "Ativo" ? 'Cancelar Candidatura' : 'Excluir'}}
+                                <button wire:click="destroy({{ $myCandidacy->id }})"
+                                    class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded shadow">
+                                    {{ $myCandidacy->status == 'Ativo' ? 'Cancelar Candidatura' : 'Excluir' }}
                                 </button>
                             </td>
 
                         </tr>
                     @endforeach
+
                 </tbody>
             </table>
         </div>
@@ -116,60 +123,103 @@
     <script src="https://cdn.jsdelivr.net/npm/shepherd.js/dist/js/shepherd.min.js"></script>
 
     <script>
-        document.getElementById("btnTutorial").addEventListener("click", function () {
+        document.getElementById("btnTutorial").addEventListener("click", function() {
 
             const tour = new Shepherd.Tour({
                 defaultStepOptions: {
-                    cancelIcon: { enabled: true },
+                    cancelIcon: {
+                        enabled: true
+                    },
                     classes: 'shadow-lg bg-white rounded-lg',
-                    scrollTo: { behavior: 'smooth', block: 'center' }
+                    scrollTo: {
+                        behavior: 'smooth',
+                        block: 'center'
+                    }
                 }
             });
 
             tour.addStep({
                 title: 'Bem-vindo ao Dashboard!',
                 text: 'Esta é sua área principal com indicadores e atalhos.',
-                attachTo: { element: 'h2.text-3xl', on: 'bottom' },
-                buttons: [{ text: 'Próximo', action: tour.next }]
+                attachTo: {
+                    element: 'h2.text-3xl',
+                    on: 'bottom'
+                },
+                buttons: [{
+                    text: 'Próximo',
+                    action: tour.next
+                }]
             });
 
             tour.addStep({
                 title: 'Ver vagas',
                 text: 'Veja as vagas disponíveis para se candidatar.',
-                attachTo: { element: 'a#see-vacancies', on: 'bottom' },
-                buttons: [
-                    { text: 'Voltar', action: tour.back },
-                    { text: 'Próximo', action: tour.next }
+                attachTo: {
+                    element: 'a#see-vacancies',
+                    on: 'bottom'
+                },
+                buttons: [{
+                        text: 'Voltar',
+                        action: tour.back
+                    },
+                    {
+                        text: 'Próximo',
+                        action: tour.next
+                    }
                 ]
             });
 
             tour.addStep({
                 title: 'Criar currículo',
                 text: 'Crie seu currículo dentro da plataforma.',
-                attachTo: { element: 'a#create-cv', on: 'bottom' },
-                buttons: [
-                    { text: 'Voltar', action: tour.back },
-                    { text: 'Próximo', action: tour.next }
+                attachTo: {
+                    element: 'a#create-cv',
+                    on: 'bottom'
+                },
+                buttons: [{
+                        text: 'Voltar',
+                        action: tour.back
+                    },
+                    {
+                        text: 'Próximo',
+                        action: tour.next
+                    }
                 ]
             });
 
             tour.addStep({
                 title: 'Editar currículo',
                 text: 'Atualize seu currículo sempre que quiser.',
-                attachTo: { element: 'a#edit-cv', on: 'bottom' },
-                buttons: [
-                    { text: 'Voltar', action: tour.back },
-                    { text: 'Próximo', action: tour.next }
+                attachTo: {
+                    element: 'a#edit-cv',
+                    on: 'bottom'
+                },
+                buttons: [{
+                        text: 'Voltar',
+                        action: tour.back
+                    },
+                    {
+                        text: 'Próximo',
+                        action: tour.next
+                    }
                 ]
             });
 
             tour.addStep({
                 title: 'Ver currículo',
                 text: 'Visualize como seu currículo aparece para as empresas.',
-                attachTo: { element: 'a#see-cv', on: 'bottom' },
-                buttons: [
-                    { text: 'Voltar', action: tour.back },
-                    { text: 'Concluir', action: tour.complete }
+                attachTo: {
+                    element: 'a#see-cv',
+                    on: 'bottom'
+                },
+                buttons: [{
+                        text: 'Voltar',
+                        action: tour.back
+                    },
+                    {
+                        text: 'Concluir',
+                        action: tour.complete
+                    }
                 ]
             });
 
