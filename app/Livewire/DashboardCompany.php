@@ -43,4 +43,11 @@ class DashboardCompany extends Component
         $this->vacancies = Auth::user()->vacanciesWithCandidacyCount();
         $this->candidates = Auth::user()->allApplies();
     }
+
+    public function delete($id) {
+        Vacancy::destroy($id);
+               
+        $this->vacancies = Auth::user()->vacanciesWithCandidacyCount();
+        $this->candidates = Auth::user()->allApplies();
+    }
 }
