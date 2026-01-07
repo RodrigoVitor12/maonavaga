@@ -74,6 +74,11 @@
                                 <button id="finesh-vacancy" wire:click="stop({{$vacancy->id}})" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
                                     Encerrar
                                 </button>
+                                @if ($vacancy->status == "Encerrado")
+                                     <button id="delete-vacancy" wire:click="delete({{$vacancy->id}})" class="bg-red-800 text-white px-3 py-1 rounded hover:bg-red-600">
+                                        Excluir
+                                    </button>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
