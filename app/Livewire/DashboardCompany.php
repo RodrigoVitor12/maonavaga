@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Models\scheduleInterview;
+use App\Models\ScheduleInterview;
 use App\Models\ScheduleInterview as ModelsScheduleInterview;
 use App\Models\Vacancy;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +16,7 @@ class DashboardCompany extends Component
     public $interview;
 
     public function mount() {
-        $this->interview = scheduleInterview::where('user_id', Auth::id())->get();
+        $this->interview = ScheduleInterview::where('user_id', Auth::id())->get();
         $user = Auth::user();
         $this->candidates = $user->allApplies();
         $this->vacancies = $user->vacanciesWithCandidacyCount();
