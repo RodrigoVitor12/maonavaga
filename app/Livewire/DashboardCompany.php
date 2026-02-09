@@ -59,6 +59,6 @@ class DashboardCompany extends Component
 
     public function deleteInterview($id) {
         ScheduleInterview::destroy($id);
-        $this->interview = scheduleInterview::where('user_id', Auth::id())->get();
+        $this->interview = ScheduleInterview::where('user_id', Auth::id())->get();
     }
 }
