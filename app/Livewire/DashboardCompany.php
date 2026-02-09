@@ -2,6 +2,8 @@
 
 namespace App\Livewire;
 
+use App\Models\scheduleInterview;
+use App\Models\ScheduleInterview as ModelsScheduleInterview;
 use App\Models\Vacancy;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -11,7 +13,10 @@ class DashboardCompany extends Component
     public $candidates;
     public $vacancies;
 
+    public $interview;
+
     public function mount() {
+        $this->interview = scheduleInterview::where('user_id', Auth::id())->get();
         $user = Auth::user();
         $this->candidates = $user->allApplies();
         $this->vacancies = $user->vacanciesWithCandidacyCount();
@@ -23,6 +28,7 @@ class DashboardCompany extends Component
     }
 
     public function stop($id) {
+        ScheduleInterview::where('vacancy_id', $id)->delete();
         $vacancy = Vacancy::find($id);
 
         $vacancy->update([
@@ -49,5 +55,10 @@ class DashboardCompany extends Component
                
         $this->vacancies = Auth::user()->vacanciesWithCandidacyCount();
         $this->candidates = Auth::user()->allApplies();
+    }
+
+    public function deleteInterview($id) {
+        ScheduleInterview::destroy($id);
+        $this->interview = scheduleInterview::where('user_id', Auth::id())->get();
     }
 }

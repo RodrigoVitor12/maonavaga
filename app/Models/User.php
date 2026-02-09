@@ -42,6 +42,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    //1 entrevista tem varios candidatos
+    public function interviews() {
+        return $this->hasMany(ScheduleInterview::class, 'user_id');
+    }
+
+    // 1 entrevista pertence a 1 empresa
+    public function interview() {
+        return $this->hasMany(ScheduleInterview::class, 'candidate_id');
+    }
     
     public function resume() {
         return $this->hasOne(Resume::class);

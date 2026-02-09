@@ -86,6 +86,58 @@
             </table>
         </div>
     </section>
+    
+    <hr>
+    {{-- Entrevistas Agendadas --}}
+    @if ($interview->count())
+        
+    <section class="mt-12">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-bold text-[#1447E8]">Entrevistas Agendadas</h2>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white rounded-lg shadow">
+                <thead>
+                    <tr class="bg-[#1447E8] text-left">
+                        <th class="p-3 text-white">Nome do Candidato</th>
+                        <th class="p-3 text-white">Ver curriculo</th>
+                        <th class="p-3 text-white">Agendado para</th>
+                        <th class="p-3 text-white">Horario</th>
+                        <th class="p-3 text-white">Descrição</th>
+                        <th class="p-3 text-white">Local</th>
+                        <th class="p-3 text-white">Forma de Entrevista</th>
+                        <th class="p-3 text-white">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($interview as $i)
+                        <tr class="border-b">
+                            <td class="p-3">{{ $i->scheduledInterview->name }}</td>
+                            <td class="p-3"> <a class="underline text-blue-500 hover:text-blue-600" href="{{ route('show.resume', $i->candidate_id) }}">Ver</a></td>
+                            <td class="p-3">{{ date('d/m/Y', strtotime($i->date)) }}</td>
+                            <td class="p-3">{{ $i->time }}</td>
+                            <td class="p-3">
+                                {{ $i->notes }}
+                            </td>
+                            <td class="p-3">{{ $i->location }}</td>
+                            <td class="p-3">{{ $i->type == 'local' ? 'Presencial' : $i->type }}</td>
+                            <td class="p-3 flex gap-2">
+                                <button id="reopen-i" wire:click="deleteInterview({{$i->id}})" class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600">
+                                    Entrevista Concluida
+                                </button>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </section>
+    @else
+        <h2 class="text-3xl font-bold text-center mt-12 text-[#1447E8]">Você ainda não agendou nenhuma entrevista</h2>
+    @endif
+
+
 
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shepherd.js/dist/css/shepherd.css" />
@@ -140,17 +192,6 @@ document.getElementById("btnTutorial").addEventListener("click", function () {
         buttons: [
             { text: 'Voltar', action: tour.back },
             { text: 'Concluir', action: tour.next }
-        ]
-    });
-
-    //passo 5
-    tour.addStep({
-        title: 'Encerrar vaga',
-        text: 'Aqui você pode encerrar a vaga quando já não estiver disponivel mais',
-        attachTo: { element: 'button#finesh-vacancy', on: 'right' },
-        buttons: [
-            { text: 'Voltar', action: tour.back },
-            { text: 'Concluir', action: tour.complete }
         ]
     });
 

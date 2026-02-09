@@ -58,7 +58,7 @@
 
     </div>
 
-    <!-- MINHAS CANDIDATURAS -->
+    <!-- MINHAS CANDIDATURAS e entrevistas-->
     <section class="mb-16">
         <h2 class="text-2xl font-semibold mb-4 text-[#0D6EFD]">Minhas Candidaturas</h2>
 
@@ -113,6 +113,42 @@
                         </tr>
                     @endforeach
 
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    {{-- Minhas entrevistas --}}
+    <section class="mt-12">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-bold text-[#1447E8]">Minhas Entrevistas Agendadas</h2>
+        </div>
+        
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white rounded-lg shadow">
+                <thead>
+                    <tr class="bg-[#1447E8] text-left">
+                        <th class="p-3 text-white">Nome da Empresa</th>
+                        <th class="p-3 text-white">Agendado para</th>
+                        <th class="p-3 text-white">Horario</th>
+                        <th class="p-3 text-white">Descrição</th>
+                        <th class="p-3 text-white">Local</th>
+                        <th class="p-3 text-white">Forma de Entrevista</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($interviews as $interview)
+                        <tr class="border-b">
+                            <td class="p-3">{{ $interview->candidate->name }}</td>
+                            <td class="p-3">{{ date('d/m/Y', strtotime($interview->date)) }}</td>
+                            <td class="p-3">{{ $interview->time }}</td>
+                            <td class="p-3">
+                                {{ $interview->notes }}
+                            </td>
+                            <td class="p-3">{{ $interview->location }}</td>
+                            <td class="p-3">{{ $interview->type == 'local' ? 'Presencial' : $interview->type }}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
