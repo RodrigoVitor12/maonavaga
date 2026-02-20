@@ -19,6 +19,8 @@
 
     gtag('config', 'G-2WM5L3K0W4');
     </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7020431800764481"
+     crossorigin="anonymous"></script>
     <body>
         <x-navbar />
 
