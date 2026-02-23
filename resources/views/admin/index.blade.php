@@ -15,6 +15,7 @@
         <table class="w-full border-collapse text-left min-w-[700px]">
             <thead class="bg-[#1447E8] text-white">
                 <tr>
+                    <th class="p-3">Nº</th>
                     <th class="p-3">ID</th>
                     <th class="p-3">Nome</th>
                     <th class="p-3">E-mail</th>
@@ -26,7 +27,8 @@
             <tbody>
                 @foreach ($users as $user)
                     <tr class="border-b hover:bg-gray-50">
-                        <td class="p-3 font-semibold text-gray-700">{{ $user->id }}</td>
+                        <td class="p-3 font-semibold text-gray-900">{{ $users->firstItem() + $loop->index }}</td>
+                        <td class="p-3 font-semibold text-gray-500">{{ $user->id }}</td>
                         <td class="p-3">{{ $user->name }}</td>
                         <td class="p-3">{{ $user->email }}</td>
                         <td class="p-3">
@@ -68,6 +70,7 @@
         <table class="w-full border-collapse text-left min-w-[700px]">
             <thead class="bg-[#1447E8] text-white">
                 <tr>
+                    <th class="p-3">Nº</th>
                     <th class="p-3">ID</th>
                     <th class="p-3">Título</th>
                     <th class="p-3">Empresa</th>
@@ -78,7 +81,8 @@
             <tbody>
                 @foreach ($vacancies as $vacancy)
                     <tr class="border-b hover:bg-gray-50">
-                        <td class="p-3 font-semibold text-gray-700">{{ $vacancy->id }}</td>
+                        <td class="p-3 font-semibold text-gray-900">{{ $vacancies->firstItem() + $loop->index }}</td>
+                        <td class="p-3 font-semibold text-gray-500">{{ $vacancy->id }}</td>
                         <td class="p-3">{{ $vacancy->title }}</td>
                         <td class="p-3">{{ $vacancy->user->name ?? '—' }}</td>
                         <td class="p-3">{{ $vacancy->salary ?? 'A combinar' }}</td>
@@ -87,6 +91,36 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="mt-4">
+                    {{ $vacancies->links() }}
+                </div>
+    </div>
+
+    {{-- Total de candidaturas --}}
+    <div>
+        <table class="w-full border-collapse text-left min-w-[700px]">
+            <thead class="bg-[#1447E8] text-white">
+                <tr>
+                    <th class="p-3">Nome da empresa</th>
+                    <th class="p-3">Vaga Candidatada</th>
+                    <th class="p-3">Nome do Usuário</th>
+                    <th class="p-3">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($applies as $apply)
+                    <tr class="border-b hover:bg-gray-50">
+                        <td class="p-3">{{ $apply->vacancy->name ?? '-' }}</td>
+                        <td class="p-3 font-semibold text-gray-500">{{ $apply->vacancy->title ?? '-' }}</td>
+                        <td class="p-3">{{ $apply->user->name ?? '-' }}</td>
+                        <td class="p-3">{{ $apply->status ?? '—' }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+        <div class="mt-4">
+                    {{ $applies->links() }}
+                </div>
     </div>
 
 </div>
