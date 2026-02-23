@@ -25,7 +25,7 @@
         </div>
         <div class="bg-white p-6 rounded-lg shadow">
             <h3 class="text-xl font-semibold mb-2 text-[#1447E8]">Candidatos Recebidos</h3>
-            <p class="text-3xl font-bold text-green-600">{{ $candidates->count() }}</p>
+            <p class="text-3xl font-bold text-green-600">{{ Auth::user()->role == 1 ? $candidates->count() : $totalApplies }}</p>
         </div>
 
     </div>

@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Apply;
 use App\Models\ScheduleInterview;
 use App\Models\ScheduleInterview as ModelsScheduleInterview;
 use App\Models\Vacancy;
@@ -14,16 +15,18 @@ class DashboardCompany extends Component
     public $vacancies;
 
     public $interview;
+    public $totalApplies;
 
     public function mount() {
         $this->interview = ScheduleInterview::where('user_id', Auth::id())->get();
         $user = Auth::user();
         $this->candidates = $user->allApplies();
         $this->vacancies = $user->vacanciesWithCandidacyCount();
+        $this->totalApplies = Apply::count();
     }
 
     public function render()
-    {
+    {   
         return view('livewire.dashboard-company');
     }
 
