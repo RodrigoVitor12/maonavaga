@@ -23,26 +23,26 @@
                     <input type="text"
                         wire:model.defer="full_name"
                         placeholder="Nome Completo"
-                        class="border p-2 rounded w-full">
+                        class="border p-2 rounded w-full" required>
 
                     <input type="email"
                         wire:model.defer="email"
                         placeholder="E-mail"
-                        class="border p-2 rounded w-full">
+                        class="border p-2 rounded w-full" required>
 
                     <input type="text"
                         wire:model.defer="phone"
                         placeholder="Telefone"
-                        class="border p-2 rounded w-full">
+                        class="border p-2 rounded w-full" required>
 
                     <input type="text"
                         wire:model.defer="city"
                         placeholder="Cidade / Estado"
-                        class="border p-2 rounded w-full">
+                        class="border p-2 rounded w-full" required>
 
                     <input type="date"
                         wire:model.defer="birth_date"
-                        class="border p-2 rounded w-full">
+                        class="border p-2 rounded w-full" required>
                 </div>
             </div>
 
@@ -54,7 +54,7 @@
                     wire:model.defer="summary"
                     rows="4"
                     class="border p-2 rounded w-full"
-                    placeholder="Resumo profissional..."></textarea>
+                    placeholder="Resumo profissional..." required></textarea>
             </div>
 
             {{-- ================= EXPERIÊNCIA ================= --}}
