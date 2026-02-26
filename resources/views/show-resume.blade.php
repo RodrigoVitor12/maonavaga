@@ -1,84 +1,191 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Currículo - {{ $data->full_name }}</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículo - {{ $data->full_name }}</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+    @media print {
+
+        /* Esconde tudo */
+        body * {
+            visibility: hidden;
+        }
+
+        /* Mostra apenas o currículo */
+        #curriculo, #curriculo * {
+            visibility: visible;
+        }
+
+        /* Faz o currículo ocupar a página inteira */
+        #curriculo {
+            position: absolute;
+            left: 0;
+            top: 20;
+            width: 100%;
+        }
+
+        /* Remove botão de imprimir */
+        button {
+            display: none !important;
+        }
+
+        /* Remove fundo cinza */
+        body {
+            background: white !important;
+        }
+
+        /* Remove URL e numeração */
+        @page {
+            margin: 0;
+        }
+    }
+</style>
 </head>
-<body class="bg-gray-200 min-h-screen flex flex-col items-center justify-center py-8 px-4">
 
-  <div class="w-full max-w-4xl bg-white p-6 sm:p-10 shadow-2xl rounded-lg border border-gray-300">
+<body class="bg-gray-200 min-h-screen flex flex-col items-center py-10 px-4">
+
+    <!-- Botões -->
+    <div class="no-print w-full max-w-5xl flex justify-between mb-6">
+        <a href="{{ route('dashboard') }}"
+           class="px-4 py-2 bg-gray-600 text-white font-semibold rounded-lg shadow hover:bg-gray-700 transition">
+            ← Voltar
+        </a>
+
+        <button onclick="window.print()"
+                class="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition">
+            🖨 Imprimir Currículo
+        </button>
+    </div>
     
-    <!-- Cabeçalho -->
-    <header class="border-b pb-6 mb-6 text-center sm:text-left">
-      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 break-words">{{ $data->full_name }}</h1>
-      <div class="mt-2 space-y-1 text-gray-600">
-        <p>📧 {{ $data->email }}</p>
-        <p>📱 {{ $data->phone }}</p>
-        <p>📍 {{ $data->city }}</p>
-      </div>
-    </header>
 
-    <!-- Resumo -->
-    <section class="mb-6">
-      <h2 class="text-lg sm:text-xl font-semibold text-blue-700 uppercase tracking-wide mb-2">Resumo</h2>
-      <p class="text-gray-800 leading-relaxed whitespace-pre-line">
-        {{ $data->summary }}
-      </p>
-    </section>
+    <!-- Container Principal -->
+    <div id="curriculo" class="resume-container w-full max-w-5xl bg-white shadow-2xl grid grid-cols-3">
 
-    <!-- Formação -->
-    <section class="mb-6">
-      <h2 class="text-lg sm:text-xl font-semibold text-blue-700 uppercase tracking-wide mb-2">Formação</h2>
-      <div class="pl-2 border-l-4 border-blue-500">
-        <p class="font-semibold text-gray-900">{{ $data->course_type }}</p>
-        <p class="text-gray-700">{{ $data->institution }}</p>
-        <p class="text-gray-500 text-sm">{{ $data->completion_status }}</p>
-      </div>
-    </section>
+        <!-- COLUNA ESQUERDA -->
+        <div class="bg-blue-700 text-white p-8 col-span-1">
 
-    <!-- Experiência -->
-    <section class="mb-6">
-      <h2 class="text-lg sm:text-xl font-semibold text-blue-700 uppercase tracking-wide mb-2">Experiência Profissional</h2>
+            <!-- Nome -->
+            <h1 class="text-2xl font-bold leading-snug">
+                {{ $data->full_name }}
+            </h1>
 
-      @foreach (range(1, 2) as $i)
-        @php
-          $position = "experience_{$i}_position";
-          $company = "experience_{$i}_company";
-          $period = "experience_{$i}_period";
-          $activities = "experience_{$i}_activities";
-        @endphp
+            <div class="mt-6 space-y-2 text-sm">
+                <p>📧 {{ $data->email }}</p>
+                <p>📱 {{ $data->phone }}</p>
+                <p>📍 {{ $data->city }}</p>
+            </div>
 
-        @if ($data->$position && $data->$company && $data->$period && $data->$activities)
-          <div class="mb-4 pl-2 border-l-4 border-blue-500">
-            <p class="font-semibold text-gray-900">{{ $data->$position }} - {{ $data->$company }}</p>
-            <p class="text-gray-500 text-sm">{{ $data->$period }}</p>
-            <p class="text-gray-700 whitespace-pre-line">{{ $data->$activities }}</p>
-          </div>
-        @endif
-      @endforeach
-    </section>
+            <!-- Habilidades -->
+            @if($data->skills)
+            <div class="mt-8">
+                <h2 class="text-sm font-bold uppercase tracking-wider border-b border-blue-300 pb-2 mb-3">
+                    Habilidades
+                </h2>
 
-    <!-- Habilidades -->
-    <section class="mb-6">
-      <h2 class="text-lg sm:text-xl font-semibold text-blue-700 uppercase tracking-wide mb-2">Habilidades</h2>
-      <p class="text-gray-800 whitespace-pre-line">{{ $data->skills }}</p>
-    </section>
+                <ul class="space-y-1 text-sm">
+                    @foreach(explode(',', $data->skills) as $skill)
+                        <li>• {{ trim($skill) }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
 
-    <!-- Idiomas -->
-    @if ($data->languages)
-      <section>
-        <h2 class="text-lg sm:text-xl font-semibold text-blue-700 uppercase tracking-wide mb-2">Idiomas</h2>
-        <p class="text-gray-800">{{ $data->languages }}</p>
-      </section>
-    @endif
-  </div>
-  
-  <div class="mt-6">
-    <a href="{{ route('dashboard') }}" class="flex p-2 text-center font-bold bg-blue-600 text-white">Voltar</a> 
-  </div>
+            <!-- Idiomas -->
+            @if($data->languages)
+            <div class="mt-8">
+                <h2 class="text-sm font-bold uppercase tracking-wider border-b border-blue-300 pb-2 mb-3">
+                    Idiomas
+                </h2>
 
+                <p class="text-sm">
+                    {{ $data->languages }}
+                </p>
+            </div>
+            @endif
+
+        </div>
+
+        <!-- COLUNA DIREITA -->
+        <div class="p-10 col-span-2">
+
+            <!-- Resumo -->
+            @if($data->summary)
+            <section class="mb-10">
+                <h2 class="text-lg font-bold text-blue-700 uppercase tracking-wide border-b pb-2 ">
+                    Resumo Profissional
+                </h2>
+
+                <p class="text-gray-700 leading-relaxed whitespace-pre-line">
+                    {{ $data->summary }}
+                </p>
+            </section>
+            @endif
+
+            <!-- Experiência -->
+            @if($data->experiences->count())
+            <section class="mb-10">
+                <h2 class="text-lg font-bold text-blue-700 uppercase tracking-wide border-b pb-2">
+                    Experiência Profissional
+                </h2>
+
+                @foreach($data->experiences as $experience)
+                    <div class="mb-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="font-semibold text-gray-900">
+                                    {{ $experience->position }}
+                                </p>
+                                <p class="text-blue-700 font-medium">
+                                    {{ $experience->company }}
+                                </p>
+                            </div>
+                            <p class="text-sm text-gray-500">
+                                {{ $experience->start_date }} - {{ $experience->end_date ?? 'Atual' }}
+                            </p>
+                        </div>
+
+                        <p class="mt-2 text-gray-700 whitespace-pre-line">
+                            {{ $experience->activities }}
+                        </p>
+                    </div>
+                @endforeach
+            </section>
+            @endif
+
+            <!-- Formação -->
+            @if($data->educations->count())
+            <section>
+                <h2 class="text-lg font-bold text-blue-700 uppercase tracking-wide border-b pb-2">
+                    Formação Acadêmica
+                </h2>
+
+                @foreach($data->educations as $education)
+                    <div class="mb-5">
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="font-semibold text-gray-900">
+                                    {{ $education->course_type }}
+                                </p>
+                                <p class="text-gray-700">
+                                    {{ $education->institution }}
+                                </p>
+                            </div>
+                            <p class="text-sm text-gray-500">
+                                {{ $education->status }}
+                            </p>
+                        </div>
+                    </div>
+                @endforeach
+            </section>
+            @endif
+
+        </div>
+
+    </div>
 
 </body>
 </html>

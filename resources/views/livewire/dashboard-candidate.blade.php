@@ -19,20 +19,39 @@
         </a>
 
         <a id="create-cv" href="{{ route('create.resume') }}"
-            class="bg-[#0D6EFD] hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-md shadow text-center">
-            Criar Currículo
+           class="bg-[#0D6EFD] hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-md shadow text-center">
+            Criar / Editar Currículo
         </a>
 
-        <a id="edit-cv" href="{{ route('page.update.resume') }}"
-            class="bg-[#0D6EFD] hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-md shadow text-center">
-            Editar Currículo
-        </a>
 
         <a id="see-cv" href="{{ route('show.resume', auth()->user()->id) }}"
             class="bg-[#0D6EFD] hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-md shadow text-center">
             Ver Currículo
         </a>
     </div>
+
+    {{-- Atualize CV --}}
+    <div class="bg-blue-50 border-l-4 border-blue-600 p-5 rounded-lg shadow-sm mb-6 mt-6">
+    
+    <div class="flex items-start gap-3">
+        
+        <div class="text-blue-600 text-2xl">
+            🔄
+        </div>
+
+        <div>
+            <h3 class="text-blue-700 font-bold text-lg">
+                Atualize seu currículo
+            </h3>
+
+            <p class="text-gray-700 mt-1 text-sm">
+                Atualizamos o modelo de currículo da plataforma para oferecer um layout mais profissional e moderno.
+                Recomendamos que você revise e atualize suas informações para garantir que seu currículo esteja completo e atualizado.
+            </p>
+        </div>
+
+    </div>
+</div> 
 
     <!-- CARDS DE INDICADORES -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 mb-12">
@@ -43,12 +62,12 @@
             <p class="text-4xl font-bold text-[#0D6EFD]">{{ $myCandidacies->count() }}</p>
         </div>
 
-        {{-- <div class="bg-white p-6 rounded-xl shadow">
+        <div class="bg-white p-6 rounded-xl shadow">
             <h3 class="text-lg font-medium text-gray-600 mb-2">Entrevistas agendadas</h3>
-            <p class="text-4xl font-bold text-[#0D6EFD]">1</p>
+            <p class="text-4xl font-bold text-[#0D6EFD]">{{$interviews->count()}}</p>
         </div>
 
-        <div class="bg-white p-6 rounded-xl shadow">
+        {{-- <div class="bg-white p-6 rounded-xl shadow">
             <h3 class="text-lg font-medium text-gray-600 mb-2">Currículo completo</h3>
             <div class="w-full bg-gray-200 rounded-full h-2">
                 <div class="bg-[#0D6EFD] h-2 rounded-full" style="width:85%"></div>

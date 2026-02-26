@@ -12,23 +12,26 @@ class Resume extends Model
         'email',
         'phone',
         'city',
+        'birth_date',
         'summary',
-        'course_type',
-        'institution',
-        'completion_status',
-        'experience_1_position',
-        'experience_1_company',
-        'experience_1_period',
-        'experience_1_activities',
-        'experience_2_position',
-        'experience_2_company',
-        'experience_2_period',
-        'experience_2_activities',
+        'desired_job_type',
+        'availability',
+        'salary_expectation',
         'skills',
         'languages',
     ];
 
     public function user() {
         return $this->belongsTo(User::class);
+    }
+
+    public function experiences()
+    {
+        return $this->hasMany(\App\Models\Experience::class);
+    }
+
+    public function educations()
+    {
+        return $this->hasMany(\App\Models\Education::class);
     }
 }

@@ -23,11 +23,8 @@ Route::middleware('auth')->group(function () {
     //candidate
     Route::get('/detalhe/vaga/{id}', [VacancyController::class, 'detail'])->name('vacancy.detail');
     Route::get('/criar-curriculo', [ResumeController::class, 'create'])->name('create.resume');
-    Route::get('/atualizar-curriculo', [ResumeController::class, 'pageUpdate'])->name('page.update.resume');
     Route::get('/curriculo/{id}', [ResumeController::class, 'show'])->name('show.resume');
     
-    Route::post('/criar-curriculo', [ResumeController::class, 'store'])->name('store.resume');
-    Route::post('/atualizar-curriculo/{id}', [ResumeController::class, 'update'])->name('update.resume');
     Route::post('/apply/{id}', [VacancyApplicationController::class, 'apply'])->name('vacancy.apply');
 
     Route::get('/dashboard', [DashboardController::class, 'index',])->name('dashboard');
