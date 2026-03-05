@@ -158,7 +158,7 @@
                 <tbody>
                     @foreach ($interviews as $interview)
                         <tr class="border-b">
-                            <td class="p-3">{{ $interview->candidate->name }}</td>
+                            <td class="p-3">{{ $interview->candidate->name ?? 'Usuário removido' }}</td>
                             <td class="p-3">{{ date('d/m/Y', strtotime($interview->date)) }}</td>
                             <td class="p-3">{{ $interview->time }}</td>
                             <td class="p-3">
