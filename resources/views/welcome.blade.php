@@ -74,7 +74,7 @@
             @foreach ($vacancies->take(3) as $vacancy)
                 <x-card-job 
                     :id="$vacancy->id" 
-                    :role="$vacancy->user->role" 
+                    :role="$vacancy->user->role ?? null" 
                     :title="$vacancy->title" 
                     :company="$vacancy->name" 
                     :city="$vacancy->address"
