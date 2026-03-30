@@ -6,6 +6,7 @@ use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginRegisterAsWhoController;
+use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\VacancyApplicationController;
@@ -43,8 +44,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/candidatos', [CandidateController::class, 'show'])->name('company.candidates');
 });
 
+// Rotas para planos
+Route::middleware(['auth'])->group(function() {
+    Route::get('/planos', [PlanController::class, 'index'])->name('plans.index');
+    Route::post('/planos/select', [PlanController::class, 'select'])->name('plans.select');
+});
+
 Route::get('/sobre', [AboutController::class, 'index'])->name('aboutUs');
 Route::get('/vagas', [VacancyController::class, 'show'])->name('vacancies.show');
+
 
 
 
