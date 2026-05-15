@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginRegisterAsWhoController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResumeController;
+use App\Http\Controllers\SuportController;
 use App\Http\Controllers\VacancyApplicationController;
 use App\Http\Controllers\VacancyController;
 use Illuminate\Support\Facades\Route;
@@ -52,6 +53,9 @@ Route::middleware(['auth'])->group(function() {
 
 Route::get('/sobre', [AboutController::class, 'index'])->name('aboutUs');
 Route::get('/vagas', [VacancyController::class, 'show'])->name('vacancies.show');
+Route::get('/ajuda', [SuportController::class, 'faq'])->name('faq');
+Route::get('/termos-de-privacidade', [SuportController::class, 'privacy'])->name('privacy');
+Route::get('/termos-de-uso', [SuportController::class, 'useTerm'])->name('use.term');
 
 
 

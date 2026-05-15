@@ -87,21 +87,21 @@
                 </h3>
 
                 <div class="flex flex-col gap-4 text-blue-200 text-sm">
-                    <a href="#" 
+                    <a href="{{ route('faq') }}" 
                        class="hover:text-white hover:translate-x-1 transition duration-300">
                         Central de Ajuda
                     </a>
-                    <a href="#" 
+                    <a href="https://wa.me/5535997401598?text=Olá, preciso de suporte no site MaoNaVaga!" 
+                        target="_blank"
                        class="hover:text-white hover:translate-x-1 transition duration-300">
                         Contato
                     </a>
-                    <a href="#" 
+                    <a href="{{ route('privacy') }}" 
                        class="hover:text-white hover:translate-x-1 transition duration-300">
                         Política de privacidade
                     </a>
 
-                    <a href="#"
-                       target="_blank"
+                    <a href="{{ route('use.term') }}"
                        class="hover:text-white hover:translate-x-1 transition duration-300">
                         Termos de uso
                     </a>
