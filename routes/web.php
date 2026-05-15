@@ -45,12 +45,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/candidatos', [CandidateController::class, 'show'])->name('company.candidates');
 });
 
-// Rotas para planos
-Route::middleware(['auth'])->group(function() {
-    Route::get('/planos', [PlanController::class, 'index'])->name('plans.index');
-    Route::post('/planos/select', [PlanController::class, 'select'])->name('plans.select');
-});
-
+Route::get('/planos', [PlanController::class, 'index'])->name('plans.index');
 Route::get('/sobre', [AboutController::class, 'index'])->name('aboutUs');
 Route::get('/vagas', [VacancyController::class, 'show'])->name('vacancies.show');
 Route::get('/ajuda', [SuportController::class, 'faq'])->name('faq');
