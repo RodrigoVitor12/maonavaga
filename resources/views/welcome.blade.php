@@ -9,23 +9,23 @@
     <div class="max-w-6xl mx-auto px-6 py-24 md:py-28 text-center">
 
         <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">
-            Conectando Empresas e Talentos de <br class="hidden md:block">
-            <span class="text-[#FDC700]">todo o Sul de Minas</span>
+            Vagas e oportunidades  <br class="hidden md:block">
+            <span class="text-[#FDC700]">perto de você</span>
         </h1>
 
         <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-10">
-            A plataforma que aproxima candidatos e empresas da sua região de forma simples e profissional.
+            O Maonavaga conecta empresas e candidatos do Sul de Minas de forma simples e profissional.
         </p>
 
         <div class="flex flex-col md:flex-row gap-5 justify-center items-center">
             <a href="{{ route('register-company') }}"
                 class="bg-[#00A63E] hover:bg-green-700 px-10 py-4 rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-3">
-                Cadastrar Empresa (Grátis para começar)
+                Publicar Vagas Gratuitamente
             </a>
 
             <a href="{{ route('register-candidate') }}"
                 class="bg-[#FDC700] text-[#0F172A] hover:bg-yellow-400 px-10 py-4 rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300">
-                Cadastrar como Candidato
+                Criar Currículo Grátis
             </a>
         </div>
 
@@ -75,8 +75,7 @@
                 </h3>
 
                 <p class="text-gray-600 text-sm leading-relaxed">
-                    Conectamos empresas e candidatos de todo o Sul de Minas, 
-                    aumentando as chances de encontrar talentos locais.
+                    Conectamos empresas e candidatos do Sul de Minas, facilitando contratações locais e oportunidades perto de você.
                 </p>
             </div>
 
@@ -92,7 +91,7 @@
                 </h3>
 
                 <p class="text-gray-600 text-sm leading-relaxed">
-                    Publique sua vaga em minutos e comece a receber candidatos rapidamente.
+                    Publique vagas em minutos e receba candidaturas rapidamente, sem burocracia.
                 </p>
             </div>
 
@@ -104,12 +103,11 @@
                 </div>
 
                 <h3 class="text-xl font-semibold mb-3">
-                    Muito Mais Acessível
+                    Mais Acessível para Empresas
                 </h3>
 
                 <p class="text-gray-600 text-sm leading-relaxed">
-                    Planos acessíveis pensados para empresas locais,
-                    muito mais baratos que grandes plataformas.
+                    Planos simples e acessíveis, pensados para empresas da região — sem os altos custos das grandes plataformas.
                 </p>
             </div>
 
@@ -125,8 +123,7 @@
                 </h3>
 
                 <p class="text-gray-600 text-sm leading-relaxed">
-                    Receba currículos organizados e acompanhe
-                    cada candidatura diretamente na plataforma.
+                    Acompanhe candidaturas, visualize currículos e gerencie entrevistas em um só lugar.
                 </p>
             </div>
 
@@ -177,7 +174,7 @@
                     <span class="text-[#155DFC] font-bold text-2xl">1</span>
                 </div>
                 <h3 class="text-2xl font-semibold mb-4">Crie sua Conta</h3>
-                <p class="text-gray-600">Cadastre-se gratuitamente e tenha acesso a vagas da sua região.</p>
+                <p class="text-gray-600">Cadastre-se gratuitamente e encontre vagas em empresas da sua região.</p>
             </div>
 
             <div class="bg-[#F8FAFF] p-8 rounded-3xl shadow-sm hover:shadow-xl transition text-center">
@@ -185,7 +182,7 @@
                     <span class="text-[#155DFC] font-bold text-2xl">2</span>
                 </div>
                 <h3 class="text-2xl font-semibold mb-4">Cadastre seu Currículo</h3>
-                <p class="text-gray-600">Fique visível para empresas de Santa Rita, Pouso Alegre, Itajubá e toda a região.</p>
+                <p class="text-gray-600">Deixe seu perfil visível para empresas de Santa Rita do Sapucaí, Pouso Alegre, Itajubá e todo o Sul de Minas.</p>
             </div>
 
             <div class="bg-[#F8FAFF] p-8 rounded-3xl shadow-sm hover:shadow-xl transition text-center">
@@ -193,14 +190,14 @@
                     <span class="text-[#155DFC] font-bold text-2xl">3</span>
                 </div>
                 <h3 class="text-2xl font-semibold mb-4">Candidate-se</h3>
-                <p class="text-gray-600">Envie candidaturas em poucos cliques e acompanhe o processo.</p>
+                <p class="text-gray-600">Envie candidaturas em poucos cliques e acompanhe seu processo seletivo pela plataforma.</p>
             </div>
         </div>
 
         <div class="text-center mt-14">
             <a href="{{ route('register-candidate') }}"
                 class="bg-[#155DFC] hover:bg-blue-700 text-white px-10 py-4 rounded-2xl font-semibold text-lg shadow-md hover:shadow-xl transition inline-block">
-                Cadastrar meu Currículo Agora
+                Criar Meu Currículo Gratuitamente
             </a>
         </div>
     </div>
@@ -242,12 +239,12 @@
 
         <!-- Planos Resumidos -->
         <!-- PLANOS -->
-        <div class="max-w-6xl mx-auto mt-16 grid md:grid-cols-4 gap-8">
+        <div class="max-w-6xl mt-16 grid md:grid-cols-2 gap-8">
 
             <!-- Plano Gratuito -->
             <div class="bg-white rounded-3xl shadow-sm p-8 border hover:shadow-xl transition">
                 <h4 class="text-xl font-bold mb-2">Starter</h4>
-                <p class="text-gray-500 mb-6">Para testar a plataforma</p>
+                <p class="text-gray-500 mb-6">Para começar gratuitamente</p>
 
                 <p class="text-4xl font-bold text-green-600 mb-6">
                     R$0
@@ -256,11 +253,11 @@
 
                 <ul class="space-y-3 text-gray-600 mb-8">
                     <li>✔ 1 vaga ativa</li>
-                    <li>✔ Receber currículos</li>
-                    <li>✔ Perfil da empresa</li>
-                    <li>✔ Até 2 Agendamento de entrevistas</li>
-                    <li class="text-gray-400">✖ Banco de currículos</li>
-                    <li class="text-gray-400">✖ Destaque de vagas</li>
+                    <li>✔ Receber candidaturas</li>
+                    <li>✔ visualizar currículos</li>
+                    <li>✔ 10 dias de acesso</li>
+                    <li class="text-gray-400">✖ Agendamento de entrevista</li>
+                    {{-- <li class="text-gray-400">✖ Destaque de vagas</li> --}}
                 </ul>
 
                 <a href="{{ route('register-company') }}"
@@ -270,10 +267,10 @@
             </div>
 
 
-            <!-- Plano Básico -->
+            <!-- Plano Profissional -->
             <div class="bg-white rounded-3xl shadow-sm p-8 border hover:shadow-xl transition">
-                <h4 class="text-xl font-bold mb-2">Local</h4>
-                <p class="text-gray-500 mb-6">Para pequenas empresas</p>
+                <h4 class="text-xl font-bold mb-2">Profissional</h4>
+                <p class="text-gray-500 mb-6">Para empresas que contratam com frequência</p>
 
                 <p class="text-4xl font-bold text-[#155DFC] mb-6">
                     R$49
@@ -281,12 +278,14 @@
                 </p>
 
                 <ul class="space-y-3 text-gray-600 mb-8">
-                    <li>✔ Até 5 vagas ativas</li>
-                    <li>✔ Receber candidatos</li>
-                    <li>✔ Perfil da empresa</li>
-                    <li>✔ Acesso ao banco de currículos</li>
-                    <li>✔ Agendamento de entrevistas Ilimitado</li>
-                    <li class="text-gray-400">✖ Destaque de vagas</li>
+                    <li>✔ Vagas ilimitadas</li>
+                    <li>✔ Currículos ilimitados</li>
+                    <li>✔ Agendamento de entrevistas</li>
+                    {{-- <li>✔ Destaque nas vagas</li> --}}
+                    <li>✔ WhatsApp direto com candidatos</li>
+                    <li>✔ Suporte prioritário</li>
+                    {{-- <li>✔ Perfil da empresa</li> --}}
+                    {{-- <li class="text-gray-400">✖ Destaque de vagas</li> --}}
                 </ul>
 
                 <a href="{{ route('register-company') }}"
@@ -296,7 +295,7 @@
             </div>
 
 
-            <!-- Plano Profissional (Recomendado) -->
+            {{-- <!-- Plano Profissional (Recomendado) -->
             <div class="bg-white rounded-3xl shadow-xl p-8 border-2 border-[#155DFC] relative">
 
                 <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#155DFC] text-white text-sm px-4 py-1 rounded-full">
@@ -348,7 +347,7 @@
                     class="block text-center bg-[#FDC700] hover:bg-yellow-400 py-3 rounded-xl font-semibold transition">
                     Assinar plano
                 </a>
-            </div>
+            </div> --}}
 
         </div>
         <p class="text-center text-gray-500 mt-10">

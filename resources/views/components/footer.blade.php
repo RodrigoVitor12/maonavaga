@@ -1,7 +1,7 @@
 <footer class="bg-gradient-to-br from-[#155DFC] to-[#0F3FBF] text-white">
     <div class="max-w-7xl mx-auto px-6 py-16">
 
-        <div class="grid md:grid-cols-4 gap-12">
+        <div class="grid md:grid-cols-5 gap-12">
 
             <!-- Logo + Sobre -->
             <div class="md:col-span-2">
@@ -29,6 +29,9 @@
                     <p class="flex items-center gap-2">
                         <ion-icon name="location-outline"></ion-icon>
                         Santa Rita do Sapucaí - MG
+                    </p>
+                    <p class="flex items-center gap-2">
+                        🧾CNPJ: 62.225.206/0001-28
                     </p>
                 </div>
             </div>
@@ -61,6 +64,14 @@
                        class="hover:text-white hover:translate-x-1 transition duration-300">
                         Publicar vagas
                     </a>
+                    <a href="#" 
+                       class="hover:text-white hover:translate-x-1 transition duration-300">
+                        Encontrar Candidatos
+                    </a>
+                    <a href="#" 
+                       class="hover:text-white hover:translate-x-1 transition duration-300">
+                        Planos para empresas
+                    </a>
 
                     <a href="https://wa.me/5535997401598?text=Olá, preciso de suporte no site MaoNaVaga!"
                        target="_blank"
@@ -68,12 +79,31 @@
                         Suporte
                     </a>
                 </div>
+            </div>
+            {{-- Suporte --}}
+            <div>
+                <h3 class="text-lg font-semibold mb-6 tracking-wide">
+                    Suporte
+                </h3>
 
-                <!-- CTA Estratégico -->
-                <div class="mt-8">
-                    <a href="{{ route('company.create-job') }}"
-                       class="inline-block bg-white text-[#155DFC] font-semibold px-5 py-2.5 rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition duration-300">
-                        Publicar minha vaga
+                <div class="flex flex-col gap-4 text-blue-200 text-sm">
+                    <a href="#" 
+                       class="hover:text-white hover:translate-x-1 transition duration-300">
+                        Central de Ajuda
+                    </a>
+                    <a href="#" 
+                       class="hover:text-white hover:translate-x-1 transition duration-300">
+                        Contato
+                    </a>
+                    <a href="#" 
+                       class="hover:text-white hover:translate-x-1 transition duration-300">
+                        Política de privacidade
+                    </a>
+
+                    <a href="#"
+                       target="_blank"
+                       class="hover:text-white hover:translate-x-1 transition duration-300">
+                        Termos de uso
                     </a>
                 </div>
             </div>
