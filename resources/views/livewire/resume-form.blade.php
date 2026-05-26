@@ -1,8 +1,8 @@
 <div class="p-8">
 
-    @if (session()->has('success'))
+    @if (session()->has('error'))
         <div class="mb-4 p-4 bg-green-100 text-green-700 rounded-lg">
-            {{ session('success') }}
+            {{ session('error') }}
         </div>
     @endif
 
@@ -133,7 +133,7 @@
 
                         <input type="text"
                             wire:model.defer="educations.{{ $index }}.institution"
-                            placeholder="Instituição"
+                            placeholder="Instituição - Nome do Curso"
                             class="border p-2 rounded w-full">
 
                         <select wire:model.defer="educations.{{ $index }}.status"

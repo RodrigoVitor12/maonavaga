@@ -33,24 +33,24 @@
     {{-- Atualize CV --}}
     <div class="bg-blue-50 border-l-4 border-blue-600 p-5 rounded-lg shadow-sm mb-6 mt-6">
     
-    <div class="flex items-start gap-3">
-        
-        <div class="text-blue-600 text-2xl">
-            🔄
-        </div>
+        {{-- <div class="flex items-start gap-3">
+            
+            <div class="text-blue-600 text-2xl">
+                🔄
+            </div>
 
-        <div>
-            <h3 class="text-blue-700 font-bold text-lg">
-                Atualize seu currículo
-            </h3>
+            <div>
+                <h3 class="text-blue-700 font-bold text-lg">
+                    Atualize seu currículo
+                </h3>
 
-            <p class="text-gray-700 mt-1 text-sm">
-                Atualizamos o modelo de currículo da plataforma para oferecer um layout mais profissional e moderno.
-                Recomendamos que você revise e atualize suas informações para garantir que seu currículo esteja completo e atualizado.
-            </p>
-        </div>
+                <p class="text-gray-700 mt-1 text-sm">
+                    Atualizamos o modelo de currículo da plataforma para oferecer um layout mais profissional e moderno.
+                    Recomendamos que você revise e atualize suas informações para garantir que seu currículo esteja completo e atualizado.
+                </p>
+            </div>
 
-    </div>
+        </div> --}}
 </div> 
 
     <!-- CARDS DE INDICADORES -->

@@ -150,71 +150,69 @@ class ResumeForm extends Component
 
     public function save()
     {
-    $this->validate();
+        // $this->validate();
+    
+        try {
+            DB::beginTransaction();
 
-    try {
+            // Se quiser permitir apenas 1 currículo por usuário
+            $existingResume = Resume::where('user_id', Auth::id())->first();
 
-        DB::beginTransaction();
-
-        // Se quiser permitir apenas 1 currículo por usuário
-        $existingResume = Resume::where('user_id', Auth::id())->first();
-
-        if ($existingResume) {
-            $existingResume->delete();
-        }
-
-        $resume = Resume::create([
-            'user_id' => Auth::id(),
-            'full_name' => $this->full_name,
-            'email' => $this->email,
-            'phone' => $this->phone,
-            'city' => $this->city,
-            'birth_date' => $this->birth_date,
-            'summary' => $this->summary,
-            'desired_job_type' => $this->desired_job_type,
-            'availability' => $this->availability,
-            'salary_expectation' => $this->salary_expectation,
-            'skills' => $this->skills,
-            'languages' => $this->languages,
-        ]);
-
-        // Salvar experiências
-        foreach ($this->experiences as $experience) {
-
-            if (!empty($experience['position']) || !empty($experience['company'])) {
-
-                $resume->experiences()->create([
-                    'position' => $experience['position'],
-                    'company' => $experience['company'],
-                    'start_date' => $experience['start_date'] ?: null,
-                    'end_date' => $experience['end_date'] ?: null,
-                    'currently_working' => $experience['currently_working'] ?? false,
-                    'activities' => $experience['activities'],
-                ]);
+            if ($existingResume) {
+                $existingResume->delete();
             }
-        }
 
-        // Salvar formações
-        foreach ($this->educations as $education) {
+            $resume = Resume::create([
+                'user_id' => Auth::id(),
+                'full_name' => $this->full_name,
+                'email' => $this->email,
+                'phone' => $this->phone,
+                'city' => $this->city,
+                'birth_date' => $this->birth_date,
+                'summary' => $this->summary,
+                'desired_job_type' => $this->desired_job_type,
+                'availability' => $this->availability,
+                'salary_expectation' => $this->salary_expectation,
+                'skills' => $this->skills,
+                'languages' => $this->languages,
+            ]);
 
-            if (!empty($education['institution'])) {
+            // Salvar experiências
+            foreach ($this->experiences as $experience) {
 
-                $resume->educations()->create([
-                    'course_type' => $education['course_type'],
-                    'institution' => $education['institution'],
-                    'status' => $education['status'],
-                ]);
+                if (!empty($experience['position']) || !empty($experience['company'])) {
+
+                    $resume->experiences()->create([
+                        'position' => $experience['position'],
+                        'company' => $experience['company'],
+                        'start_date' => $experience['start_date'] ?: null,
+                        'end_date' => $experience['end_date'] ?: null,
+                        'currently_working' => $experience['currently_working'] ?? false,
+                        'activities' => $experience['activities'],
+                    ]);
+                }
             }
-        }
 
-        DB::commit();
+            // Salvar formações
+            foreach ($this->educations as $education) {
 
-        session()->flash('success', 'Currículo salvo com sucesso!');
+                if (!empty($education['institution'])) {
 
-        return redirect()->route('dashboard');
+                    $resume->educations()->create([
+                        'course_type' => $education['course_type'],
+                        'institution' => $education['institution'],
+                        'status' => $education['status'],
+                    ]);
+                }
+            }
+
+            DB::commit();
+
+            session()->flash('success', 'Currículo salvo com sucesso!');
+
+            return redirect()->route('dashboard');
 
         } catch (\Throwable $e) {
-
             DB::rollBack();
 
             session()->flash('error', 'Erro ao salvar currículo.');

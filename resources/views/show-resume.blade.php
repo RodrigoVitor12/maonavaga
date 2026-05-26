@@ -107,7 +107,7 @@ Imprimir
 @if($data->birth_date)
 <div class="flex items-center gap-2">
 <span>🎂</span>
-<span>{{ $data->birth_date }}</span>
+<span>{{ date('Y') - date('Y', strtotime($data->birth_date)) }} anos</span>
 </div>
 @endif
 
@@ -198,7 +198,7 @@ Experiências
 <div>
 
 <p class="font-bold text-sm">
-{{ $experience->start_date }} - {{ $experience->end_date ?? 'Atual' }} | {{ $experience->company }}
+{{ date('d/m/Y', strtotime($experience->start_date)) }} - {{ date('d/m/Y', strtotime($experience->end_date)) ?? 'Atual' }} | {{ $experience->company }}
 </p>
 
 <p class="text-sm font-medium">
