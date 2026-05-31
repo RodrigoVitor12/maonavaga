@@ -61,6 +61,20 @@
                 {{$interview->count()}}
             </p>
         </div>
+        <!-- Entrevistas Agendadas -->
+        <div class="bg-white p-7 rounded-2xl shadow-sm border border-gray-100">
+            <p class="text-sm text-gray-500">Seu acesso expira em </p>
+            <p class="text-4xl font-bold text-[#0D6EFD] mt-2">
+                @if(auth()->user()->remaining_days > 0)
+                        {{ auth()->user()->remaining_days }} dias.
+                @else
+                    <span class="text-red-600 text-xl">
+                        Seu acesso expirou. <br>
+                        <a href="{{route('plans.index')}}" class="text-blue-500 underline">Clique aqui </a>para renovar
+                    </span>
+                @endif
+            </p>
+        </div>
 
     </div>
 

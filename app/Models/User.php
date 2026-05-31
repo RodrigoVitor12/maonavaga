@@ -9,6 +9,9 @@ use Illuminate\Notifications\Notifiable;
 use App\Models\Vacancy;
 use Illuminate\Support\Facades\Auth;
 
+// Codigo de pagamento aprovado
+// $user->expires_at = now()->addDays(30);
+// $user->save();
 /**
  * @property \Illuminate\Database\Eloquent\Collection|Vacancy[] $appliedVacancies
  */
@@ -41,7 +44,17 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'expires_at' => 'datetime',
         ];
+    }
+
+    protected static function booted()
+    {
+        static::creating(function ($user) {
+            if (!$user->expires_at) {
+                $user->expires_at = now()->addDays(10);
+            }
+        });
     }
 
     //1 entrevista tem varios candidatos
@@ -98,5 +111,16 @@ class User extends Authenticatable
         return Apply::whereHas('vacancy', function($q) {
             $q->where('user_id', $this->id);
         });
+    }
+
+    public function getRemainingDaysAttribute(): int
+    {
+        if (!$this->expires_at || $this->expires_at->isPast()) {
+            return 0;
+        }
+
+        return now()->startOfDay()->diffInDays(
+            $this->expires_at->startOfDay()
+    ) + 1;
     }
 }
