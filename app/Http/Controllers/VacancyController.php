@@ -35,6 +35,9 @@ class VacancyController extends Controller
     public function store(Request $request)
     {
         $user = $request->user();
+        if($user->remaining_days == 0) {
+            return redirect()->back()->with('errorDaysLimit', 'Seu acesso expirou, para publicar mais vagas renove seu plano');
+        }
         if ($user->role == 1 || $user->role == 0) {
             if ($user->vacancies_limit <= 0) {
                 return back()->with([

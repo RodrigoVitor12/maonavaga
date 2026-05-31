@@ -8,9 +8,10 @@
                 </div>
             @endif
 
-            @if (session('error'))
+            @if (session('errorDaysLimit'))
                 <div class="mb-4 p-4 bg-red-100 text-red-700 rounded-lg">
-                    {{session('error')}}
+                    {{session('errorDaysLimit')}}
+                    <a href="{{route('plans.index')}}" class="text-blue-500 underline">Clique aqui</a> e renove seu plano agora.
                 </div>
             @endif
 

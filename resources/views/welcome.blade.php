@@ -284,12 +284,14 @@
                     {{-- <li>✔ Destaque nas vagas</li> --}}
                     <li>✔ WhatsApp direto com candidatos</li>
                     <li>✔ Suporte prioritário</li>
+                    <li>✔ 30 dias de acesso</li>
                     {{-- <li>✔ Perfil da empresa</li> --}}
                     {{-- <li class="text-gray-400">✖ Destaque de vagas</li> --}}
                 </ul>
 
-                <a href="{{ route('register-company') }}"
-                    class="block text-center bg-[#155DFC] text-white hover:bg-blue-700 py-3 rounded-xl font-semibold transition">
+                <a href="https://wa.me/5535997401598?text=Ol%C3%A1%2C%20tudo%20bem%3F%20Gostaria%20de%20assinar%20meu%20plano%2C%20como%20fa%C3%A7o%3F"
+                target="_blank"
+                class="block w-full mt-12 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl text-center">
                     Assinar plano
                 </a>
             </div>

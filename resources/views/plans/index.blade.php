@@ -140,14 +140,19 @@
                         <span class="text-purple-600 text-xl">✔</span>
                         Suporte prioritário
                     </li>
+                    <li class="flex items-center gap-3">
+                        <span class="text-purple-600 text-xl">✔</span>
+                        30 dias de acesso
+                    </li>
 
                 </ul>
 
                 <!-- Botão -->
-                <button
-                    class="w-full mt-12 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl">
-                    Assinar plano
-                </button>
+                <a href="https://wa.me/5535997401598?text=Ol%C3%A1%2C%20tudo%20bem%3F%20Gostaria%20de%20assinar%20meu%20plano%2C%20como%20fa%C3%A7o%3F"
+                    target="_blank"
+                    class="block w-full mt-12 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl text-center">
+                        Assinar plano
+                </a>
 
             </div>
 
