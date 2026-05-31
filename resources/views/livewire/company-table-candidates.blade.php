@@ -100,69 +100,75 @@
                     ✕
                 </button>
 
-                <h2 class="text-xl font-semibold mb-6">
-                    Agendar entrevista
-                </h2>
+                @if (Auth::user()->plan == "starter")
+                    <p class="text-gray-800 font-bold">Para agendar entrevista, você precisa assinar nosso plano.</p>
+                    <a href="{{route('plans.index')}}" class="text-blue-700 underline">Clique aqui</a> para assinar o nosso plano
+                @else
+                    <h2 class="text-xl font-semibold mb-6">
+                        Agendar entrevista 
+                    </h2>
 
-                <div class="space-y-4">
-                    <input type="hidden" wire:model="vacancyId">
-                    <input type="hidden" wire:model="selectedCandidateId">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">
-                            Data da entrevista
-                        </label>
-                        <input type="date" name="date" wire:model="date" class="w-full border rounded-lg px-3 py-2" >
-                        @error('date') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">
-                            Horário
-                        </label>
-                        <input type="time" wire:model="time" class="w-full border rounded-lg px-3 py-2">
-                        @error('time') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">
-                            Local ou link
-                        </label>
-                        <input type="text" wire:model="location" class="w-full border rounded-lg px-3 py-2"
-                            placeholder="Av. Central, 210">
-                            @error('location') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">
-                            Observações
-                        </label>
-                        <textarea wire:model="notes" class="w-full border rounded-lg px-3 py-2" placeholder="Trazer currículo impresso"></textarea>
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">
-                            Tipo de entrevista
-                        </label>
-                        <div class="flex gap-6">
-                            <label class="flex items-center gap-2">
-                                <input type="radio" wire:model="type" value="local">
-                                Presencial
+                    <div class="space-y-4">
+                        <input type="hidden" wire:model="vacancyId">
+                        <input type="hidden" wire:model="selectedCandidateId">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">
+                                Data da entrevista
                             </label>
+                            <input type="date" name="date" wire:model="date" class="w-full border rounded-lg px-3 py-2" >
+                            @error('date') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                        </div>
 
-                            <label class="flex items-center gap-2">
-                                <input type="radio" wire:model="type" value="Online">
-                                Online
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">
+                                Horário
                             </label>
+                            <input type="time" wire:model="time" class="w-full border rounded-lg px-3 py-2">
+                            @error('time') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                        </div>
 
-                            @error('type') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">
+                                Local ou link
+                            </label>
+                            <input type="text" wire:model="location" class="w-full border rounded-lg px-3 py-2"
+                                placeholder="Av. Central, 210">
+                                @error('location') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">
+                                Observações
+                            </label>
+                            <textarea wire:model="notes" class="w-full border rounded-lg px-3 py-2" placeholder="Trazer currículo impresso"></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Tipo de entrevista
+                            </label>
+                            <div class="flex gap-6">
+                                <label class="flex items-center gap-2">
+                                    <input type="radio" wire:model="type" value="local">
+                                    Presencial
+                                </label>
+
+                                <label class="flex items-center gap-2">
+                                    <input type="radio" wire:model="type" value="Online">
+                                    Online
+                                </label>
+
+                                @error('type') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <button wire:click="handleClick({{ $selectedCandidateId }}, {{ $vacancyId }}, 'Entrevista Agendado')"
-                    class="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-lg">
-                    Agendar entrevista
-                </button>
+                    <button wire:click="handleClick({{ $selectedCandidateId }}, {{ $vacancyId }}, 'Entrevista Agendado')"
+                        class="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-lg">
+                        Agendar entrevista
+                    </button>
+                @endif
+
 
             </div>
         </div>
