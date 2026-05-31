@@ -36,7 +36,7 @@
         </div>
 
         <!-- Vagas Disponíveis -->
-        <div class="bg-white p-7 rounded-2xl shadow-sm border border-gray-100">
+        {{-- <div class="bg-white p-7 rounded-2xl shadow-sm border border-gray-100">
             <p class="text-sm text-gray-500">Vagas Disponíveis</p>
             <p class="text-4xl font-bold text-[#0D6EFD] mt-2">
                 {{ auth()->user()->remaining_vacancies ?? '∞' }}
@@ -44,7 +44,7 @@
             <p class="text-xs text-gray-400 mt-1">
                 {{ auth()->user()->plan_name }} Plan
             </p>
-        </div>
+        </div> --}}
 
         <!-- Candidatos Recebidos -->
         <div class="bg-white p-7 rounded-2xl shadow-sm border border-gray-100">
@@ -68,7 +68,7 @@
     <div class="bg-white p-7 rounded-2xl shadow-sm border border-gray-100">
         <p class="text-sm text-gray-500">Vagas restantes</p>
         <p class="text-4xl font-bold text-[#0D6EFD] mt-2">
-            {{ Auth::user()->vacancies_limit - $vacancies->count() }}
+            {{ Auth::user()->vacancies_limit }}
         </p>
         <a href="{{ route('plans.index') }}" class="text-[#0D6EFD] hover:underline text-sm mt-2 inline-block">
             Atualizar Plano

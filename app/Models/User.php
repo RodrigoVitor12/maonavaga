@@ -26,7 +26,8 @@ class User extends Authenticatable
         'role',
         'website',
         'address',
-        'user_id'
+        'user_id',
+        'vacancies_limit'
     ];
 
     

@@ -36,6 +36,11 @@ class VacancyController extends Controller
     {
         $user = $request->user();
         if ($user->role == 1 || $user->role == 0) {
+            if ($user->vacancies_limit <= 0) {
+                return back()->with([
+                    'errorLimitVacancy' => 'Você atingiu o limite de vagas disponíveis. Atualize seu plano para publicar mais vagas.'
+                ]);
+            }
             try {
                 $user->vacancies()->create([
                     'name'         => $request['name'],
@@ -51,12 +56,13 @@ class VacancyController extends Controller
                     'email_contact' => $request['email_contact'],
                     'status' => 'Ativo'
                 ]);
+                $user->decrement('vacancies_limit');
                 return redirect()
                     ->route('company.create-job') // ou outra rota que você queira
                     ->with('success', 'Vaga criada com sucesso!');
             } catch (\Throwable $error) {
                 // Em produção, você pode querer logar ao invés de dd()
-                return back()->withErrors(['error' => 'Erro ao criar a vaga: ' . $error->getMessage()]);
+                return back()->with(['error' => 'Erro ao criar a vaga: ' . $error->getMessage()]);
             }
         }
     }

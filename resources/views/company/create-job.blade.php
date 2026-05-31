@@ -8,9 +8,16 @@
                 </div>
             @endif
 
-            @if ($errors->any())
+            @if (session('error'))
                 <div class="mb-4 p-4 bg-red-100 text-red-700 rounded-lg">
-                    {{ $errors->first() }}
+                    {{session('error')}}
+                </div>
+            @endif
+
+            @if (session('errorLimitVacancy'))
+                <div class="mb-4 p-4 bg-red-100 text-red-700 rounded-lg">
+                    {{session('errorLimitVacancy')}}
+                    <a href="{{route('plans.index')}}" class="text-blue-500 underline">Clique aqui</a> e mude seu plano agora.
                 </div>
             @endif
             <form action="{{ route('company.store-job') }}" method="POST"
