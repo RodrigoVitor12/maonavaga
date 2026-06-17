@@ -30,7 +30,8 @@ class User extends Authenticatable
         'website',
         'address',
         'user_id',
-        'vacancies_limit'
+        'vacancies_limit',
+        'plan'
     ];
 
     

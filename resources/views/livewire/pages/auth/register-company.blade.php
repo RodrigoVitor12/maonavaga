@@ -33,6 +33,7 @@ new #[Layout('layouts.guest')] class extends Component {
 
         $validated['password'] = Hash::make($validated['password']);
         $validated['vacancies_limit'] = 1;
+        $validated['plan'] = 'starter';
         // dd($validated);
 
         event(new Registered(($user = User::create($validated))));
