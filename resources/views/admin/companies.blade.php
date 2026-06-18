@@ -1,0 +1,63 @@
+@extends('layouts.app')
+
+@section('title', 'Empresas contratam - Mao Na Vaga')
+
+@section('content')
+    <div class="bg-white p-6 rounded-2xl shadow overflow-x-auto">
+        <h2 class="text-xl font-semibold text-gray-700 mb-4">Usuários Cadastrados</h2>
+        <table class="w-full border-collapse text-left min-w-[700px]">
+            <thead class="bg-[#1447E8] text-white">
+                <tr>
+                    <th class="p-3">Nº</th>
+                    <th class="p-3">ID</th>
+                    <th class="p-3">Nome</th>
+                    <th class="p-3">E-mail</th>
+                    <th class="p-3">Whatsapp</th>
+                    <th class="p-3">Tipo</th>
+                    <th class="p-3">Currículo</th>
+                    <th class="p-3">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($users as $user)
+                    <tr class="border-b hover:bg-gray-50">
+                        <td class="p-3 font-semibold text-gray-900">{{ $users->firstItem() + $loop->index }}</td>
+                        <td class="p-3 font-semibold text-gray-500">{{ $user->id }}</td>
+                        <td class="p-3">{{ $user->name }}</td>
+                        <td class="p-3">{{ $user->email }}</td>
+                        <td class="p-3">
+                            <a href="https://wa.me/{{ preg_replace('/\D/', '', $user->phone) }}" target="_blank" class="text-blue-600 underline">
+                                {{ $user->phone }}
+                            </a>
+                        </td>
+                        <td class="p-3">
+                            @if ($user->role == 2)
+                                <span class=" text-blue-600 font-semibold">Candidato</span>
+                            @elseif ($user->role == 1)
+                                <span class="text-red-600 font-semibold">Empresa</span>
+                            @else
+                                <span class="text-green-600 font-semibold">Admin</span>
+                            @endif
+                        </td>
+                        <td class="p-3"> 
+                            @if ($user->resume)
+                                <a href="{{ route('show.resume', ['id' => $user->id]) }}"
+                                class="inline-block px-3 py-1 bg-[#1447E8] text-white text-sm rounded-md hover:bg-blue-900 transition">
+                                    Ver Currículo
+                                </a>
+                            @else
+                                <p>Sem Curriculo</p>
+                            @endif
+                        </td>
+                        <td>
+                            <a href="{{route('admin.edit', $user->id)}}" class="bg-red-500 p-2 rounded-md hover:bg-red-700 text-white">Editar</a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+        <div class="mt-4">
+                    {{ $users->links() }}
+                </div>
+    </div>
+@endsection

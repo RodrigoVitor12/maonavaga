@@ -36,6 +36,12 @@ Route::middleware('auth')->group(function () {
 
     // Admin
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/admin/candidatos', [AdminController::class, 'candidates'])->name('admin.candidates');
+    Route::get('/admin/empresas', [AdminController::class, 'companies'])->name('admin.companies');
+    Route::get('/admin/vagas-publicadas', [AdminController::class, 'vacancies'])->name('admin.vacancies');
+    Route::get('/admin/candidaturas', [AdminController::class, 'applies'])->name('admin.applies');
+    Route::get('/admin/editar/{id}', [AdminController::class, 'edit'])->name('admin.edit');
+    Route::post('/admin/update/{id}', [AdminController::class, 'update'])->name('admin.update');
 });
 
 // Company
