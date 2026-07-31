@@ -38,7 +38,7 @@ class AdminController extends Controller
         if(Auth::user()->role != 0) {
             return redirect()->back();
         }
-        $users = User::where('role', '1')->paginate(10);
+        $users = User::whereIn('role', ['0', '1'])->paginate(10);
         return view('admin.companies', compact('users'));
     }
     
